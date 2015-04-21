@@ -14,6 +14,16 @@
 - It is a completely different language
 - AKA "ECMAScript"
 
+### Heritage
+
+- Inspired by LISP, particularly Scheme
+  - First-class functions
+  - Optional arguments
+  - Loose typing
+  - Closure
+  - Tail recursion (coming soon!)
+- C syntax
+
 ### Usages
 
 - Web & mobile apps
