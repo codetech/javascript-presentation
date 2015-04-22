@@ -84,7 +84,7 @@ undefined
 - Open Notepad
 - Create and save each of the following files
 
-`project\example.js`:
+`project\server.js`:
 
 ```js
 var http = require('http');
@@ -98,7 +98,7 @@ console.log('Server running at http://localhost:1337/');
 - Open command line again
 
 ```bat
-node.exe example.js
+node.exe server.js
 Server running at http://localhost:1337/
 ```
 
