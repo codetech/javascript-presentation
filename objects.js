@@ -4,8 +4,8 @@
 
 var empty_object = {};
 var stooge = {
-    "first-name": "Jerome",
-    "last-name": "Howard"
+    firstName: "Jerome",
+    lastName: "Howard"
 };
 
 var flight = {
@@ -28,14 +28,14 @@ var flight = {
  * Retrieval
  */
 
-stooge["first-name"] // "Joe"
+stooge.firstName // "Joe"
 flight.departure.IATA // "SYD"
 
-stooge["middle-name"] // undefined
+stooge.middleName // undefined
 flight.status // undefined
-stooge["FIRST-NAME"] // undefined
+stooge.FIRST_NAME // undefined
 
-var middle = stooge["middle-name"] || "(none)";
+var middle = stooge.middleName || "(none)";
 var status = flight.status || "unknown";
 
 flight.equipment // undefined
@@ -47,9 +47,9 @@ flight.equipment && flight.equipment.model // undefined
  * Update
  */
 
-stooge['first-name'] = 'Jerome';
+stooge.firstName = 'Jerome';
 
-stooge['middle-name'] = 'Lester';
+stooge.middleName = 'Lester';
 stooge.nickname = 'Curly';
 flight.equipment = {
     model: 'Boeing 777'

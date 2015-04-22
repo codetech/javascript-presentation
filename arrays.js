@@ -27,7 +27,7 @@ numbers.length = 3;
 // numbers is ['zero', 'one', 'two']
 
 numbers.push('go');
-// numbers is ['zero', 'one', 'two', 'shi', 'go']
+// numbers is ['zero', 'one', 'two', 'go']
 
 
 /*
@@ -35,16 +35,15 @@ numbers.push('go');
  */
 
 numbers.splice(2, 1);
-// numbers is ['zero', 'one', 'shi', 'go']
+// numbers is ['zero', 'one', 'go']
 
 
 /*
  * Enumeration
  */
 
-var i;
-for (i = 0; i < myArray.length; i += 1) {
-    console.log(myArray[i]);
+for (var i = 0; i < numbers.length; i += 1) {
+    console.log(numbers[i]);
 }
 
 
@@ -52,7 +51,7 @@ for (i = 0; i < myArray.length; i += 1) {
  * Methods
  */
 
-myArray.forEach(function (element) {
+numbers.forEach(function (element) {
     console.log(element);
 });
 
@@ -61,32 +60,26 @@ myArray.forEach(function (element) {
 
 var data = [4, 8, 15, 16, 23, 42];
 
-// Define two simple functions. One will add two
-// numbers. The other will multiply two numbers.
+// Create a function for squaring numbers.
 
-var add = function (a, b) {
-    return a + b;
+var square = function (a) {
+    return a * a;
 };
 
-var mult = function (a, b) {
-    return a * b;
-};
+var squares = data.map(square);
+
+// squares is [16, 64, 225, 256, 529, 1764]
 
 // Invoke the data's reduce method, passing in the
 // add function.
 
-var sum = data.reduce(add, 0); // sum is 108
+var sum = data.reduce(function (a, b) {
+    return a + b;
+}, 0); // sum is 108
 
 // Invoke the reduce method again, this time passing
 // in the multiply function.
 
-var product = data.reduce(mult, 1);
-
-// product is 7418880
-
-// Give the data array a total function.
-data.total = function () {
-    return this.reduce(add, 0);
-};
-
-total = data.total(); // total is 108
+var product = data.reduce(function (a, b) {
+    return a * b;
+}, 1); // product is 7418880

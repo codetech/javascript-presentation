@@ -26,10 +26,9 @@ var sum = add.apply(null, array); // sum is 7
  * Arguments
  */
 
-var sum = function ( ) {
-    var i;
+var sum = function () {
     var sum = 0;
-    for (i = 0; i < arguments.length; i += 1) {
+    for (var i = 0; i < arguments.length; i += 1) {
         sum += arguments[i];
     }
     return sum;
@@ -67,10 +66,10 @@ hanoi(3, 'Src', 'Aux', 'Dst');
  * Scope
  */
 
-var foo = function ( ) {
+var foo = function () {
     var a = 3;
     var b = 5;
-    var bar = function ( ) {
+    var bar = function () {
         var b = 7;
         var c = 11;
         // At this point, a is 3, b is 7, and c is 11
@@ -87,78 +86,66 @@ var foo = function ( ) {
  * Closure
  */
 
-var myObject = function ( ) {
+var myObject = function () {
     var value = 0;
     return {
         increment: function (inc) {
             value += inc;
         },
-        getValue: function ( ) {
+        getValue: function () {
             return value;
         }
     };
 }();
 
 
-var quo = function (status) {
-    return {
-        get_status: function ( ) {
-            return status;
-        }
+var getAdder = function (addee) {
+    return function (number) {
+        return number + addee;
     };
 };
 
-// Make an instance of quo.
-var myQuo = quo("amazed");
-myQuo.get_status() // => "amazed"
+var oneAdder = getAdder(1);
+oneAdder(2) // 3
+oneAdder(3) // 4
 
-
-var fade = function (node) {
-    var level = 1;
-    var step = function () {
-        var hex = level.toString(16);
-        node.style.backgroundColor = '#FFFF' + hex + hex;
-        if (level < 15) {
-            level += 1;
-            setTimeout(step, 100);
-        }
-    };
-    setTimeout(step, 100);
-};
-fade(document.body);
+var twoAdder = getAdder(2);
+twoAdder(2) // 4
+twoAdder(3) // 5
 
 
 /*
  * Modules
  */
 
-var serial_maker = function () {
-    // Produce an object that produces unique strings. A
-    // unique string is made up of two parts: a prefix
-    // and a sequence number. The object comes with
-    // methods for setting the prefix and sequence
-    // number, and a gensym method that produces unique
-    // strings.
-    var prefix = '';
-    var seq = 0;
-    return {
-        set_prefix: function (p) {
-            prefix = String(p);
-        },
-        set_seq: function (s) {
-            seq = s;
-        },
-        gensym: function () {
-            var result = prefix + seq;
-            seq += 1;
-            return result;
+var bankMaker = function (password) {
+    var balance = 0;
+    var deposit = function (amount) {
+        balance += Math.abs(amount);
+    };
+    var withdraw = function (amount, inputPassword) {
+        if (inputPassword === password) {
+            balance -= Math.abs(amount);
         }
     };
+    var getBalance = function () {
+        return balance;
+    };
+    return {
+        deposit: deposit,
+        withdraw: withdraw,
+        getBalance: getBalance
+    };
 };
-var seqer = serial_maker();
-seqer.set_prefix = ('Q');
-seqer.set_seq = (1000);
-var unique = seqer.gensym(); // unique is "Q1000"
+
+var password = 'incorrect weasel charger unstapler';
+var bank = bankMaker(password);
+bank.deposit(100);
+bank.getBalance() // 100
+bank.withdraw(50, 'password123');
+bank.getBalance() // 100
+bank.withdraw(50, password);
+bank.getBalance() // 50
 
 
 /*

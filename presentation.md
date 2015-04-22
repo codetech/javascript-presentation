@@ -17,7 +17,7 @@
 ### Heritage
 
 - Inspired by LISP, particularly Scheme
-  - First-class functions
+  - Functions as first-class objects
   - Optional arguments
   - Loose typing
   - Closure
@@ -54,6 +54,9 @@
 ```js
 console.log('Hello World!');
 ```
+
+- Open `project\` folder and double-click on `index.html`
+- Click F12 and choose "console"
 
 ## Use it as a server
 

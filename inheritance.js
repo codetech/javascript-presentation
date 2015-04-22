@@ -1,22 +1,22 @@
 var mammal = function (spec) {
-    var that = {};
-    that.get_name = function () {
+    var self = {};
+    self.getName = function () {
         return spec.name;
     };
-    that.says = function () {
+    self.says = function () {
         return spec.saying || '';
     };
-    return that;
+    return self;
 };
 
 var myMammal = mammal({name: 'Herb'});
 
 var cat = function (spec) {
     spec.saying = spec.saying || 'meow';
-    var that = mammal(spec);
-    that.purr = function (n) {
-        var i, s = '';
-        for (i = 0; i < n; i += 1) {
+    var self = mammal(spec);
+    self.purr = function (n) {
+        var s = '';
+        for (var i = 0; i < n; i += 1) {
             if (s) {
                 s += '-';
             }
@@ -24,11 +24,11 @@ var cat = function (spec) {
         }
         return s;
     };
-    that.get_name = function ( ) {
-        return that.says( ) + ' ' + spec.name +
-            ' ' + that.says( );
+    self.getName = function () {
+        return self.says() + ' ' + spec.name +
+            ' ' + self.says();
     };
-    return that;
+    return self;
 };
 
 var myCat = cat({name: 'Henrietta'});
