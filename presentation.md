@@ -42,6 +42,7 @@
 - Create a folder called `project\`
 - Open Notepad
 - Create and save each of the following files
+  - Be careful NOT to save as ".txt"! Choose "Save as type:" > "All files" and specify the file extensions.
 
 `project\index.html`:
 
@@ -55,7 +56,8 @@
 console.log('Hello World!');
 ```
 
-- Open `project\` folder and double-click on `index.html`
+- Open `project\` folder, right-click on `index.html`
+- Choose "Open with" > "Google Chrome"
 - Click F12 and choose "console"
 
 ## Use it as a server
